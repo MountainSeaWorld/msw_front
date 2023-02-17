@@ -28,7 +28,6 @@ import { useTranslation } from "react-i18next";
 export default function Personal() {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location)
   const [tab, setTab] = useState("my-nft");
   const { tokenName, nativeTokenName, marketServiceCahrge } = useAppSelector(
     (state) => state.web3Info

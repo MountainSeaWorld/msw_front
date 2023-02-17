@@ -135,7 +135,7 @@ export default function Account({
     <Style>
       {!account ? (
         <div className="login animation-button" onClick={connect}>
-          <span className="menu-txt">
+          <span className="menu-txt link-menu">
             {window.isPhone ? t("header.plink") : t("header.link")}
           </span>
         </div>
@@ -175,7 +175,7 @@ export default function Account({
             <div className="txt-img">
               <img src={imgSrc} alt="" />
             </div>
-            {formatAddress(account)}
+            {formatAddress(account.substring(0), 2, 4)}
           </span>
           <div className="txt-extra">
             <div className="menu-txt-label" onClick={goPersonal}>

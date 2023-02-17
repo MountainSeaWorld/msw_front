@@ -35,7 +35,7 @@ export default function Stake() {
   const [tabCheck,setTabCheck] = useState(true);
   const [updateFlag,setUpdateFlag] = useState(false);
   const [userEarn,setUserEarn] = useState(0);
-  const [userEarnRate,setUserEarnRate] = useState(1);
+  const [userEarnRate,setUserEarnRate] = useState(0);
 
   const [selectStakeNft,setselectStakeNft] = useState<String[]>([]);
 

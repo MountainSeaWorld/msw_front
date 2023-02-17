@@ -6,6 +6,11 @@ export default styled.div`
   .login {
     /* margin-right: 3.125rem; */
   }
+  .link-menu{
+    width:14.5rem;
+    padding:1.3rem;
+    display:flex;
+  }
   .account {
     position: relative;
     .txt-img {
