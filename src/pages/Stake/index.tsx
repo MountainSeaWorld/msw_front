@@ -38,7 +38,7 @@ export default function Stake() {
   const [userEarnRate,setUserEarnRate] = useState(0);
 
   const [selectStakeNft,setselectStakeNft] = useState<String[]>([]);
-
+  const [selectStakeNftLength,setselectStakeNftLength] = useState(0);
 
   useEffect(() => {
     RootDom.current = document.getElementById("root");
@@ -95,11 +95,13 @@ export default function Stake() {
     let nftid = item.id;
     let oldselectStakeNft = selectStakeNft;
     if (oldselectStakeNft.indexOf(nftid) > -1){
-      oldselectStakeNft = oldselectStakeNft.filter(x=>x != nftid);
+      let newarr = oldselectStakeNft.filter(x=>x != nftid);
+      oldselectStakeNft = newarr;
     }else{
       oldselectStakeNft.push(nftid);
     }
     setselectStakeNft(oldselectStakeNft)
+    setselectStakeNftLength(oldselectStakeNft.length)
   });
 
   // 质押
@@ -134,6 +136,7 @@ export default function Stake() {
         })
         .on("error", function (error: any) {
           console.log("stake", error);
+          dispatch(delSpining());
           message.error(error.message);
         });
     }
@@ -170,6 +173,8 @@ export default function Stake() {
       }).on("error", function (error: any) {
         console.log("withdraw", error);
         message.error(error.message);
+
+        dispatch(delSpining());
       }).finally(() => {
         dispatch(delSpining());
         setUpdateFlag(!updateFlag)
@@ -255,6 +260,10 @@ export default function Stake() {
                 }} />
             );
           })}
+          <TemCard />
+          <TemCard />
+          <TemCard />
+          <TemCard />
         </div>
       	<div className="paging"></div>
       </div>

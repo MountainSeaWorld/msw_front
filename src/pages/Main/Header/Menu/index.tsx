@@ -85,6 +85,9 @@ export function PhoneMenu({ goPage }: { goPage: (path: string) => void }) {
       case "/market":
         setMenu(t("header.market1") || "");
         break;
+      case "/stake":
+        setMenu(t("header.stake") || "");
+        break;
       case "/personal":
         setMenu(t("header.personal") || "");
         break;
@@ -115,6 +118,10 @@ export function PhoneMenu({ goPage }: { goPage: (path: string) => void }) {
                 key: "box",
                 label: t("header.box1"),
                 onClick: () => goPage("/box"),
+              },{
+                key: "stake",
+                label: t("header.stake"),
+                onClick: () => goPage("/stake"),
               },
               {
                 key: "market",
