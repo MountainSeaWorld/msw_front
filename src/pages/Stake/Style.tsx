@@ -59,6 +59,10 @@ export default styled(Layout)`
                 color: white;
                 line-height: 3.5rem;
                 font-weight: bold;
+                @media only screen and (max-width: 768px) {
+                  position:relative;
+                  top:1rem;
+                }
             }
             .value{
                 font-size: 1.125rem;
@@ -69,6 +73,7 @@ export default styled(Layout)`
                       font-size: 0.875rem;
                       font-weight: 400;
                 }
+
             }
       }
       .early{
@@ -83,6 +88,10 @@ export default styled(Layout)`
               color: white;
               line-height: 3.5rem;
               font-weight: bold;
+              @media only screen and (max-width: 768px) {
+                position:relative;
+                top:1rem;
+              }
           }
           .value{
               font-size: 1.75rem;
@@ -107,6 +116,10 @@ export default styled(Layout)`
           justify-content: space-evenly;
           -webkit-box-align: center;
           align-items: center;
+          @media only screen and (max-width: 768px) {
+            position:relative;
+            top:2rem;
+          }
           .tip{
                 text-align: center;
                 .icon{
@@ -152,9 +165,11 @@ export default styled(Layout)`
         cursor: pointer;
         pointer-events: auto;
   }
+
   .actions{
         display: flex;
-        width: var(--content-width);
+        width:100%;
+        width:var(--content-width);
         -webkit-box-pack: justify;
         justify-content: space-between;
         -webkit-box-align: center;
@@ -163,7 +178,8 @@ export default styled(Layout)`
         margin-bottom: 2.5rem;
         position: relative;
         @media only screen and (max-width: 768px) {
-          display: block;
+          // display: block;
+          justify-content: left;
         }
         .tabs{
               display: flex;
@@ -172,25 +188,47 @@ export default styled(Layout)`
               -webkit-box-align: center;
               align-items: center;
               margin-left: 2.5rem;
+              @media only screen and (max-width: 768px) {
+                position:relative;
+                top:-10px;
+                left:-20px;
+              }
+
               .tabs-item.on {
-                  width: 10.75rem;
                   height: 4.4375rem;
+                  width: 10.75rem;
                   line-height: 4.4375rem;
                   background-image: url(${Tabon});
+                   @media only screen and (max-width: 768px) {
+                    width: 4.4375rem;
+                    height: 2.7375rem;
+                    line-height: 2.7375rem;
+                  }
+
               }
               .tabs-item.off {
+                  height: 4.2rem;
                   width: 10.75rem;
-                  height: 3.75rem;
                   line-height: 3.75rem;
                   background-image: url(${Taboff});
                   color: rgba(255, 255, 255, 0.5);
+                  @media only screen and (max-width: 768px) {
+                    width: 3.95rem;
+                    height: 2.55rem;
+                    line-height: 2.55rem;
+                  }
               }
               .tabs-item {
+
                   background-size: 100% 100%;
                   cursor: pointer;
                   color: rgb(255, 255, 255);
                   text-align: center;
                   margin-right: 0.625rem;
+                  @media only screen and (max-width: 768px) {
+                    font-size:14px;
+                  }
+
               }
         },
 
@@ -239,6 +277,10 @@ export default styled(Layout)`
                 align-items: center;
                 margin-right: 1.25rem;
                 position: relative;
+                @media only screen and (max-width: 768px) {
+                  top:40px;
+                  left:-50px;
+                }
 
   }
  .list{
@@ -246,9 +288,18 @@ export default styled(Layout)`
    width: var(--content-width);
    display:flex;
    flex-wrap: wrap;
+   justify-content:space-between;
+ }
+ .paging {
+   text-align: center;
+   margin-bottom:80px;
  }
 
 
-
+.stake-btn>div{
+  @media only screen and (max-width: 768px) {
+    width:4rem;
+  }
+}
 
 `;

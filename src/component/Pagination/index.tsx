@@ -20,7 +20,6 @@ export default function Pagination({
   useEffect(() => {
     RootDom.current = document.getElementById("root");
   }, []);
-
   useEffect(() => {
     setMax(Math.ceil(total / pageSize));
     setPageIndex(1);
@@ -61,8 +60,7 @@ export default function Pagination({
     }
     onChange(pageIndex, pageSize);
   }, [pageIndex, pageSize, onChange]);
-
-  if (max === 1 || total === 0) {
+  if ( total === 0) {
     return null;
   } else {
     return (

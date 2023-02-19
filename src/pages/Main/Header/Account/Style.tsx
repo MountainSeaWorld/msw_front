@@ -6,10 +6,19 @@ export default styled.div`
   .login {
     /* margin-right: 3.125rem; */
   }
+
+  .link-success{
+    display: inline-block;
+    line-height: 32px;
+    width: 13rem;
+    text-align: center;
+  }
   .link-menu{
-    width:14.5rem;
+    width:16.5rem;
     padding:1.3rem;
-    display:flex;
+    display:inline-block;
+    text-align:center;
+    line-height:20px;
   }
   .account {
     position: relative;
@@ -50,7 +59,7 @@ export default styled.div`
           }
         }
       }
-
+     
       .txt {
         line-height: 3.75rem;
         &:hover {

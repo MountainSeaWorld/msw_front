@@ -171,7 +171,7 @@ export default function Account({
         </Dropdown>
       ) : (
         <div className="account">
-          <span className="menu-txt">
+          <span className="menu-txt link-success">
             <div className="txt-img">
               <img src={imgSrc} alt="" />
             </div>

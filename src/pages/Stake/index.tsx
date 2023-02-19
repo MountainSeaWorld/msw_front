@@ -4,11 +4,12 @@ import cardbg from "@img/card-bg.png";
 import { message } from "antd";
 import { useWeb3React } from "@web3-react/core";
 import { addSpining, delSpining, setLoginVisible } from "@ar/state";
-import { useEffect, useRef, useState } from "react";
+import { useCallback,useEffect, useRef, useState } from "react";
 import { useBoolean, useDebounceFn, useToggle } from "ahooks";
 import { useWeb3Object, useWeb3Utils } from "@utils/web3/useWeb3Object";
 import { useAppDispatch, useAppSelector } from "@ar/hooks";
 
+import Pagination from "@com/Pagination";
 import config from "@utils/web3/config";
 import { useMemoizedFn } from "ahooks";
 import useApi from "@utils/useApi";
@@ -31,7 +32,7 @@ export default function Stake() {
   const { getMyNftList,getMyStakeNftList } = useApi();
   const [userStakedNft, setUserStakedNft] = useState([]);
   const [viewList, setViewList] = useState<NFTCard[]>([]);
-  const [pageInfo, setPageInfo] = useState({ pageSize: 10, pageIndex: 1 });
+  const [pageInfo, setPageInfo] = useState({ pageSize: 20, pageIndex: 1 });
   const [tabCheck,setTabCheck] = useState(true);
   const [updateFlag,setUpdateFlag] = useState(false);
   const [userEarn,setUserEarn] = useState(0);
@@ -90,6 +91,16 @@ export default function Stake() {
       setViewList(stakeList.slice(start, end));
     }
   }
+
+const changePage = useCallback(
+    (pageIndex: number, pageSize: number) => {
+      setPageInfo({
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+      });
+    },
+    [setPageInfo]
+  );
 
  const selectBurl = useMemoizedFn((item: NFTCard) => {
     let nftid = item.id;
@@ -243,12 +254,14 @@ export default function Stake() {
         </div>
         <div className="confirm">
           <span>Selected:{selectStakeNft.length}/5</span>
-          <Button size="small"
+          <div className="stake-btn">
+            <Button size="small"
                         callbackData={''}
                         onClick={tabCheck ? stakeSend : withdraw} >{tabCheck ? 'STAKE': 'WITHDRAW'}</Button>
-        </div>
+
+          </div>
+         </div>
       </div>
-      <div className="sc-gikAfH ddPraQ">
       	<div className="list">
           {viewList.map((item) => {
             return (
@@ -265,8 +278,13 @@ export default function Stake() {
           <TemCard />
           <TemCard />
         </div>
-      	<div className="paging"></div>
-      </div>
+      	<div className="paging">
+      	  <Pagination
+      	    total={tabCheck ? list.length : stakeList.length}
+      	    pageSize={20}
+      	    onChange={changePage}
+      	  />
+      	</div>
     </Style>
   )
 
