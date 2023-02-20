@@ -24,6 +24,7 @@ export default function Stake() {
   const { active, account } = useWeb3React();
   const web3Object = useWeb3Object();
 
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { toNativeWei, fromWei } = useWeb3Utils();
   const RootDom = useRef<HTMLElement | null>(null);
@@ -262,6 +263,8 @@ const changePage = useCallback(
           </div>
          </div>
       </div>
+      {viewList.length > 0 ? (
+        <>
       	<div className="list">
           {viewList.map((item) => {
             return (
@@ -285,6 +288,13 @@ const changePage = useCallback(
       	    onChange={changePage}
       	  />
       	</div>
+        </>
+        ) : (
+          <div className="no-data">
+            <div className="no-data-title">{t("nd")}</div>
+            <div className="no-data-tips">{t("nd.tip")}</div>
+          </div>
+        )}
     </Style>
   )
 

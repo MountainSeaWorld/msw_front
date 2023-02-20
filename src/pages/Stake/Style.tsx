@@ -179,7 +179,7 @@ export default styled(Layout)`
         position: relative;
         @media only screen and (max-width: 768px) {
           // display: block;
-          justify-content: left;
+          justify-content: space-between;
         }
         .tabs{
               display: flex;
@@ -238,6 +238,9 @@ export default styled(Layout)`
         }
         .confirm > div {
             width: 10.5rem;
+            @media only screen and (max-width: 768px) {
+              width: 5rem;
+            }
         }
         .yVfNx {
             background-image: url(${Btndefault});
@@ -278,8 +281,8 @@ export default styled(Layout)`
                 margin-right: 1.25rem;
                 position: relative;
                 @media only screen and (max-width: 768px) {
-                  top:40px;
-                  left:-50px;
+                  top:45px;
+                  right:3rem;
                 }
 
   }
@@ -301,5 +304,8 @@ export default styled(Layout)`
     width:4rem;
   }
 }
-
+.no-data{
+  margin-top:50px;
+  border-top:none;
+}
 `;
