@@ -46,7 +46,7 @@ export default function Stake() {
     RootDom.current = document.getElementById("root");
   }, []);
 
-  // 获取当前质押盈利的代币数量 18590719692
+  // 获取当前质押盈利的代币数量
    async function getUserEarnAmount(){
      if (!active || !web3Object || !account) {
        dispatch(setLoginVisible(true));
@@ -76,7 +76,7 @@ export default function Stake() {
 
   useEffect(() => {
       getInitData()
-  }, [getMyNftList, account, web3Object,list,getMyStakeNftList]);
+  }, [getMyNftList, account, web3Object,list,getMyStakeNftList,updateFlag]);
 
   useEffect(() => {
       tabViewList()
@@ -203,7 +203,11 @@ const changePage = useCallback(
    const result = await web3Object.ContractMine.methods
    .claim().send({from: account}).then((res:any)=>{
        console.log(res)
-   }).finally(() => {
+   }).on("error", function (error: any) {
+        console.log("getClaim", error);
+        message.error(error.message);
+        dispatch(delSpining());
+      }).finally(() => {
       dispatch(delSpining());
       setUpdateFlag(!updateFlag)
    });
