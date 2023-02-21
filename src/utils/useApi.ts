@@ -32,6 +32,7 @@ export default function useApi() {
     marketBuyEventList,
     myNftListForAddress,
     myNftList,
+    myStakeNftList,
     Cards,
   } = useAppSelector((state) => state.web3Info);
   const dispatch = useAppDispatch();
@@ -356,9 +357,9 @@ export default function useApi() {
  /**获取我的质押nft列表 */
   const getMyStakeNftList = useMemoizedFn(
     async (address: string, isForce?: boolean) => {
-      // if (myStakeNftList.length > 0 && !isForce) {
-      //   return myStakeNftList;
-      // }
+      if (myStakeNftList.length > 0 && !isForce) {
+        return myStakeNftList;
+      }
       if (!web3Object) {
         message.warn(t("message.ne"));
         return [];

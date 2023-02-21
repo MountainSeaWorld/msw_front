@@ -35,7 +35,7 @@ export default function Stake() {
   const [viewList, setViewList] = useState<NFTCard[]>([]);
   const [pageInfo, setPageInfo] = useState({ pageSize: 20, pageIndex: 1 });
   const [tabCheck,setTabCheck] = useState(true);
-  const [updateFlag,setUpdateFlag] = useState(false);
+
   const [userEarn,setUserEarn] = useState(0);
   const [userEarnRate,setUserEarnRate] = useState(0);
 
@@ -73,10 +73,18 @@ export default function Stake() {
       getUserEarnAmount()
     }
   }
-
+  function getUpdateData(){
+    if (account && web3Object) {
+      console.log(stakeList)
+      getMyNftList(account,true);
+      getMyStakeNftList(account,true)
+      tabViewList()
+      console.log(stakeList)
+    }
+  }
   useEffect(() => {
       getInitData()
-  }, [getMyNftList, account, web3Object,list,getMyStakeNftList,updateFlag]);
+  }, [getMyNftList, account, web3Object,list,getMyStakeNftList]);
 
   useEffect(() => {
       tabViewList()
@@ -157,9 +165,11 @@ const changePage = useCallback(
     }).on("transactionHash", function (hash: any) {
         console.log("stake", hash);
     }).on("receipt", async (receipt: any) => {
+
+      setselectStakeNft([])
+      getUpdateData()
     }).finally(() => {
         dispatch(delSpining());
-        setUpdateFlag(!updateFlag)
       });
   }
 
@@ -182,6 +192,9 @@ const changePage = useCallback(
      .on("transactionHash", function (hash: any) {
         console.log("withdraw", hash);
       }).on("receipt", async (receipt: any) => {
+
+        setselectStakeNft([]);
+        getUpdateData()
       }).on("error", function (error: any) {
         console.log("withdraw", error);
         message.error(error.message);
@@ -189,7 +202,6 @@ const changePage = useCallback(
         dispatch(delSpining());
       }).finally(() => {
         dispatch(delSpining());
-        setUpdateFlag(!updateFlag)
       });
   }
  // 领取收益的代币：
@@ -209,7 +221,7 @@ const changePage = useCallback(
         dispatch(delSpining());
       }).finally(() => {
       dispatch(delSpining());
-      setUpdateFlag(!updateFlag)
+      getInitData();
    });
  }
 

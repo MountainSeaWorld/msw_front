@@ -184,5 +184,5 @@ export default styled.div.attrs((props) => ({ key: props.id }))<{
 `;
 
 export const Tem = styled.i`
-  width: 17.5rem;
+   width: 18.1875rem;
 `;

@@ -122,7 +122,7 @@ export default function Box() {
     }
     //开盲盒
     await web3Object.ContractBox.methods
-      .open()
+      .open(1)
       .send({
         from: account,
       })
@@ -175,6 +175,7 @@ export default function Box() {
       })
       .on("error", function (error: any) {
         console.log("开盲盒", error);
+        dispatch(delSpining());
         message.error(error.message);
       })
       .finally(() => {
