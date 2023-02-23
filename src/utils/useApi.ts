@@ -514,6 +514,7 @@ export default function useApi() {
           )
         )
         .then((res) => {
+          console.log(metaDataBaseURI)
           if (res.status === 200) {
             console.log(res)
             return {
