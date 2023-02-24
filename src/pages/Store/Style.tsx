@@ -25,7 +25,7 @@ export default styled(Layout)`
     @media only screen and (max-width: 768px) {
       width: 19.5rem;
       height: 4.5625rem;
-      background-image: url(${StoreTitlePhone});
+      background-image: url(${StoreTitle});
       margin-top: 6.875rem;
     }
   }
@@ -67,6 +67,7 @@ export default styled(Layout)`
       /* border: 0.0625rem solid #574444; */
       margin: 0 5.25rem;
       position: relative;
+      padding-bottom:15px;
       @media only screen and (max-width: 768px) {
         margin: 0;
       }
@@ -157,6 +158,7 @@ export default styled(Layout)`
         }
         .button {
           width: 10.5rem;
+          margin-top:10px;
         }
       }
     }

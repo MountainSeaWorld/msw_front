@@ -240,9 +240,11 @@ const changePage = useCallback(
       <div className='title'></div>
       <div className="staking-content">
         <div className="reward">
-          <div className="label">Reward</div>
-          <div className="value">
-            {userEarnRate} MSW <span className="unit">/ DAY</span>
+          <div className="stake-item">
+            <div className="label">Reward</div>
+            <div className="value">
+              {userEarnRate} MSW <span className="unit">/ DAY</span>
+            </div>
           </div>
         </div>
         <div className="early">
@@ -272,7 +274,7 @@ const changePage = useCallback(
         <div className="confirm">
           <span>Selected:{selectStakeNft.length}/5</span>
           <div className="stake-btn">
-            <Button size="small"
+            <Button type="buy" size="small"
                         callbackData={''}
                         onClick={tabCheck ? stakeSend : withdraw} >{tabCheck ? 'STAKE': 'WITHDRAW'}</Button>
 

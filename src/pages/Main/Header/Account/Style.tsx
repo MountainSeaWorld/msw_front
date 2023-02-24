@@ -1,42 +1,47 @@
 import styled from "styled-components";
 
 export default styled.div`
-  padding-top: 1.25rem;
-  padding-right: 2.5rem;
   .login {
     /* margin-right: 3.125rem; */
   }
 
   .link-success{
     display: inline-block;
-    line-height: 32px;
     width: 13rem;
     text-align: center;
   }
   .link-menu{
     width:16.5rem;
-    padding:1.3rem;
     display:inline-block;
     text-align:center;
-    line-height:20px;
+    margin-top:2.2rem;
+    @media only screen and (max-width: 768px) {
+      width:auto;
+    margin-top:0;
+    }
   }
   .account {
     position: relative;
-    .txt-img {
+    font-family: ArialMT;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);;
+    margin-top:2.5rem;
+    @media only screen and (max-width: 768px) {
+      margin-top:0;
+    }
+    .txt-img{
+      display:flex;
+      justify-content:center;
+    }
+    .txt-img>img {
       display: inline-block;
       width: 1.5rem;
       height: 1.5rem;
       vertical-align: middle;
       margin-right: 0.3125rem;
-      position: relative;
-      > img {
-        width: 100%;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        object-fit: contain;
+      @media only screen and (max-width: 768px) {
+        width: 1rem;
+        height: 1rem;
       }
     }
     .txt-extra {
@@ -53,13 +58,13 @@ export default styled.div`
           background-color: #301c1c;
         }
         .menu-txt {
-          line-height: 3.75rem;
+          line-height: 7.25rem;
           &:hover {
             color: white;
           }
         }
       }
-     
+
       .txt {
         line-height: 3.75rem;
         &:hover {

@@ -161,21 +161,21 @@ export default function Account({
           placement="bottomRight"
         >
           <div className="account">
-            <span className="menu-txt">
+            <span className="link-succes">
               <div className="txt-img">
                 <img src={imgSrc} alt="" />
+              {formatAddress(account.substring(2), 2, 4)}
               </div>
-              {formatAddress(account.substring(2), 2, 2)}
             </span>
           </div>
         </Dropdown>
       ) : (
         <div className="account">
-          <span className="menu-txt link-success">
+          <span className="link-success">
             <div className="txt-img">
               <img src={imgSrc} alt="" />
-            </div>
             {formatAddress(account.substring(0), 2, 4)}
+            </div>
           </span>
           <div className="txt-extra">
             <div className="menu-txt-label" onClick={goPersonal}>

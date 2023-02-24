@@ -222,7 +222,7 @@ export default function Box() {
             <div className="value">{boxNum}</div>
           </div>
           <div className="button">
-            <Button onClick={openBox}>{t("open")}</Button>
+            <Button onClick={openBox} type="buy">{t("open")}</Button>
           </div>
         </>
       )}

@@ -22,24 +22,20 @@ export default function Header() {
   if (headerVisible) {
     return (
       <Style>
-        <div
-          className="left"
-          onClick={() => {
-            goPage("/");
-          }}
-        >
-          <div className="icon"></div>
+        <div className="navbg">
+          
+          <div className="middle">
+            {window.isPhone ? (
+              <PhoneMenu goPage={goPage} />
+            ) : (
+              <Menu goPage={goPage} />
+            )}
+          </div>
+          <div className="right">
+            <Account goPage={goPage} />
+          </div>
         </div>
-        <div className="middle">
-          {window.isPhone ? (
-            <PhoneMenu goPage={goPage} />
-          ) : (
-            <Menu goPage={goPage} />
-          )}
-        </div>
-        <div className="right">
-          <Account goPage={goPage} />
-        </div>
+
       </Style>
     );
   } else {

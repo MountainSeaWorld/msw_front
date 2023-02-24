@@ -12,10 +12,12 @@ import TeamImg from "@img/team.png";
 import { personList } from "@utils/commom";
 import Tline from "@img/home/tline.png";
 import Tline1 from "@img/home/tline1.png";
-import PartnerTop from "@img/home/parteners-top.png";
-import PartnerBottom from "@img/home/parteners-bottom.png";
-import PartnerTop1 from "@img/home/longTop.png";
-import PartnerBottom1 from "@img/home/longBottom.png";
+import PartnerTop from "@img/home/partner-top-line.png";
+import PartnerBottom from "@img/home/partner-bottom-line.png";
+// import PartnerTop1 from "@img/home/longTop.png";
+// import PartnerBottom1 from "@img/home/longBottom.png";
+import introduce from "@img/home/introduction.png"
+import transactions from "@img/home/transactions.png";
 import { useTranslation } from "react-i18next";
 
 export default function Home() {
@@ -110,14 +112,21 @@ export default function Home() {
         </div>
         <div className="middleContent">
           <div className="firstPart">
-            <img src={FirstTitle} alt="" className="topicImg" />
+            <div className="firstPartImg">
+              <div><img src={FirstTitle} alt="" className="topicImg" /></div>
+              <div><img src={introduce} alt="" className="introduce" /></div>
+            </div>
+
             <div className="firstDes des">
               {i18n.language === "en"
                 ? firstDesList[current].info
                 : firstDesList[current].zhInfo}
             </div>
             <div className="secondPart">
-              <img src={SecondTitle} alt="" className="topicImg" />
+              <div className="firstPartImg">
+                <div> <img src={SecondTitle} alt="" className="topicImg" /></div>
+                <div><img src={transactions} alt="" className="introduce" /></div>
+              </div>
               <div className="secondDes bu">
                 <div className="blind">
                   <div
@@ -152,7 +161,6 @@ export default function Home() {
             <div className="timeLineTop">
               <div className="item">
                 <div className="line">
-                  <img src={Line} alt="" />
                 </div>
                 <div className="detail">
                   <div className="time">{t("home.2022.2")}</div>
@@ -164,7 +172,6 @@ export default function Home() {
               </div>
               <div className="item">
                 <div className="line">
-                  <img src={Line} alt="" />
                 </div>
                 <div className="detail">
                   <div className="time">{t("home.2022.4")}</div>
@@ -182,7 +189,6 @@ export default function Home() {
               </div>
               <div className="item">
                 <div className="line">
-                  <img src={Line} alt="" />
                 </div>
                 <div className="detail">
                   <div className="time">{t("home.2023.2")}</div>
@@ -197,7 +203,6 @@ export default function Home() {
             <div className="timeLineBottom">
               <div className="item bot">
                 <div className="line">
-                  <img src={Line} alt="" />
                 </div>
                 <div className="detail">
                   <div className="time">{t("home.2022.3")}</div>
@@ -214,7 +219,6 @@ export default function Home() {
               </div>
               <div className="item bot q3">
                 <div className="line">
-                  <img src={Line} alt="" />
                 </div>
                 <div className="detail">
                   <div className="time">{t("home.2023.1")}</div>
@@ -239,7 +243,8 @@ export default function Home() {
               return (
                 <div className="contentItem" key={index}>
                   <div className="img">
-                    <img src={Tline} alt="" />
+                    <img className="teamline1" src={Tline1} alt="" />
+                    <img className="teamline" src={Tline} alt="" />
                   </div>
                   <div className="info">
                     <div className="name">
@@ -257,12 +262,11 @@ export default function Home() {
                 </div>
               );
             })}
-            {!window.isPhone && (
-              <div className="img">
-                <img src={Tline1} alt="" />
-              </div>
-            )}
           </div>
+
+            <div className="img">
+              <img className="teamline1" src={Tline1} alt="" />
+            </div>
         </div>
       </div>
       <div className="botPart">
@@ -270,7 +274,7 @@ export default function Home() {
           <img src={PartnerTitle} className="topic" alt="" />
           <img
             className="partner-img"
-            src={window.isPhone ? PartnerTop : PartnerTop1}
+            src={PartnerTop}
             alt=""
           />
           <div className="main">
@@ -295,8 +299,8 @@ export default function Home() {
             <div className="blank" />
           </div>
           <img
-            className="partner-img"
-            src={window.isPhone ? PartnerBottom : PartnerBottom1}
+            className="partner-bottom"
+            src={PartnerBottom}
             alt=""
           />
         </div>

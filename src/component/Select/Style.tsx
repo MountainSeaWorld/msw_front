@@ -15,6 +15,9 @@ export default styled.div<{ isOn: boolean; theme?: "white" }>`
   .select-content {
     width: 9.6875rem;
     height: 2.5rem;
+    @media only screen and (max-width: 768px) {
+      width: 7.6875rem;
+    }
     background-image: url(${(props) =>
       props.theme === "white" ? WhiteBg : TagBg});
     background-size: 100% 100%;

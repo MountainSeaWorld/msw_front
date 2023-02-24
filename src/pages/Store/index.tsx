@@ -264,7 +264,7 @@ export default function Store() {
               <div className="price-value">{`${storePrice.card.price} ${nativeTokenName}`}</div>
             </div>
             <div className="button">
-              <Button onClick={openBuyGuild}>{t("buy")}</Button>
+              <Button onClick={openBuyGuild} type="buy">{t("buy")}</Button>
             </div>
           </div>
         </div>
@@ -289,7 +289,7 @@ export default function Store() {
               <div className="price-value">{`${storePrice.box.price} ${nativeTokenName}`}</div>
             </div>
             <div className="button">
-              <Button onClick={openBuyBox}>{t("buy")}</Button>
+              <Button onClick={openBuyBox} type="buy">{t("buy")}</Button>
             </div>
           </div>
         </div>

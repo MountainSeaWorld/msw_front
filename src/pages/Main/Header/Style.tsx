@@ -5,22 +5,27 @@ import MenuLeftOn from "@img/menu-left-on.png";
 import MenuRightOff from "@img/menu-right-off.png";
 import MenuRightOn from "@img/menu-right-on.png";
 import MenuMiddleOn from "@img/menu-middle-on.png";
+import navbg from "@img/home/nav-bg.png"
 import { Menu } from "antd";
 
 export default styled.div`
   width: 86.9375rem;
   height: 6.5625rem;
   max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   transition: all 2s ease-out;
+  .navbg{
+    background:url(${navbg});
+    width:100%;
+    height:100%;
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .left {
-    width: 15.5rem;
-    height: 6.25rem;
     margin-top: 0.3125rem;
-    padding-top: 0.625rem;
-    background-image: url(${MenuLeftOff});
     background-size: 100% 100%;
     display: flex;
     justify-content: center;
@@ -33,17 +38,13 @@ export default styled.div`
       width: 3.3125rem;
       height: 1.75rem;
       margin-left: 3.3125rem;
-      background-image: url(${Icon});
-      background-size: 100% 100%;
     }
   }
   .middle {
+    height:5rem;
+    max-width:880px;
   }
   .right {
-    width: 16.4375rem;
-    height: 6.4375rem;
-    margin-bottom: 0.125rem;
-    background-image: url(${MenuRightOff});
     background-size: 100% 100%;
     display: flex;
     justify-content: center;
@@ -56,7 +57,7 @@ export default styled.div`
   .menu-txt {
     font-family: ArialMT;
     font-size: 0.875rem;
-    line-height: 5.625rem;
+    line-height: 7.325rem;
     background: linear-gradient(
       0deg,
       #d6d6d6 0%,
@@ -70,6 +71,11 @@ export default styled.div`
     height: 3.25rem;
     padding: 0;
     width: 100%;
+    .navbg{
+      padding-top:16px;
+      width:22rem;
+
+    }
     .left {
       width: 7.5rem;
       height: 3.25rem;
@@ -81,9 +87,10 @@ export default styled.div`
       }
     }
     .right {
-      width: 8.75rem;
       height: 3.375rem;
       margin-bottom: 0.3125rem;
+      position:relative;
+      left:30px;
       > div {
         padding-right: 0.9375rem;
         padding-top: 0.375rem;
@@ -100,9 +107,9 @@ export default styled.div`
       width: 7.1875rem;
       height: 2.75rem;
       margin-top: 0.125rem;
+      margin-right:1rem;
       line-height: 2.75rem;
       text-align: center;
-      background-image: url(${MenuMiddleOn});
       background-size: 100% 100%;
       .menu {
         color: #8081a6;

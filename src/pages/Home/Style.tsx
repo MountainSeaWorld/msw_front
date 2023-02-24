@@ -7,20 +7,14 @@ import Active from "@img/home/active.png";
 import Default from "@img/home/default.png";
 import TimeBg from "@img/home/timeBg.png";
 import TeamBg from "@img/home/teamBg.png";
-import partner from "@img/home/partner.png";
+import partner from "@img/home/partner-bg.png";
 import partnerPhone from "@img/home/partner-phone.png";
+import homeBanner from "@img/home/home-banner.png"
+import secondbg from "@img/home/second-bg.png"
+import timeBg from "@img/home/time-line-bg.png"
 
 export default styled(Layout)`
-  .mainContent {
-    background-image: url(${Bg});
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    @media only screen and (max-width: 768px) {
-      background-image: url(${BgPhone});
-      background-position: 0px -300px;
-      background-size: 100% auto;
-    }
-  }
+
   .timeMain {
     width: 100%;
     background-image: url(${TimeBg});
@@ -67,8 +61,15 @@ export default styled(Layout)`
         .item {
           display: flex;
           height: 13.125rem;
+          background-image:url(${timeBg});
+          background-size:100% 100%;
+          padding-top:4rem;
+          width:100%;
+          height:23rem;
           @media (max-width: 768px) {
-            height: auto;
+            min-height:168px;
+            height:auto;
+            padding-top:2rem;
           }
           @media (max-width: 768px) {
             margin-top: 1.875rem;
@@ -111,12 +112,29 @@ export default styled(Layout)`
       }
     }
   }
-
+  .teamline1{
+        position: relative;
+        left: -1rem;
+        top: 0.5rem;
+        width: 2.3rem;
+        @media (max-width: 768px) {
+          width: 1.5rem;
+          left: 9px;
+        }
+  }
   .teamMain {
     width: 100%;
     background-image: url(${TeamBg});
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    @media (max-width: 768px) {
+      padding-bottom:85px;
+    }
+    .teamlinebottom{
+      width: 2.3rem;
+      position:relative;
+      top:10px;
+    }
     .teamContent {
       &.p_meanfe1 {
         width: 60%;
@@ -137,42 +155,68 @@ export default styled(Layout)`
         width: 750px;
       }
       @media (max-width: 768px) {
-        padding: 7.5rem 0 2.5rem 0;
+        padding: 7.5rem 0 0 0;
       }
       .team {
         img {
-          width: 9.5rem;
+          width: auto;
+          height:3.2rem;
+          @media (max-width: 768px) {
+            height:2.5rem;
+          }
         }
       }
 
       .mainContent2 {
-        margin-top: 2.875rem;
+        margin-top:35px;
+
         .contentItem {
           display: flex;
-          margin-bottom: 2.5rem;
+          height: 164px;
+          @media (max-width: 768px) {
+
+            height: 309px;
+          }
           .img {
             width: auto;
-            height: 6.25rem;
             margin-right: 1.75rem;
             @media (max-width: 768px) {
               width: auto;
               height: 100%;
+              position:relative;
+              left:20px;
             }
-            img {
+            .teamline1{
+                  position: relative;
+                  left: -1rem;
+                  top: 0.5rem;
+                  width: 2.3rem;
+                  @media (max-width: 768px) {
+                    width: 1.5rem;
+                    left: -0.6rem;
+                  }
+            }
+            .teamline {
               display: block;
               max-width: 100%;
-              height: auto;
+              height: 100%;
+              width: 0.3rem;
+              @media (max-width: 768px) {
+                width: 0.2rem;
+              }
             }
           }
           .info {
             flex: 1;
+            position:relative;
+            top:0.8rem;
             .name {
               margin-bottom: 0.625rem;
               font-size: 1.125rem;
               color: #ffffff;
               font-weight: 600;
               @media (max-width: 768px) {
-                margin-bottom: 1rem;
+                margin-bottom: 0;
               }
             }
             .topic {
@@ -202,6 +246,9 @@ export default styled(Layout)`
     width: 100%;
     text-align: center;
     position: relative;
+    background-imgage:url(${homeBanner});
+    background-size: 100% auto;
+    background-repeat: no-repeat;
     video {
       width: 100%;
       height: 100%;
@@ -236,29 +283,41 @@ export default styled(Layout)`
     }
   }
   .middleContent {
-    max-width: 75rem;
     margin: 0 auto;
+    padding:100px 10rem;
+    background:url(${secondbg});
+    background-size:100% 100%;
+    background-repeat:no-repeat;
     @media only screen and (max-width: 768px) {
-      padding: 0 1.25rem;
+      padding: 30px  1.25rem 0 1.25rem;
     }
     .des {
-      width: 21.625rem;
+      width: 40.625rem;
       font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 1);
     }
     .topicImg {
-      max-width: 90%;
+      max-width: 60%;
     }
     .firstPart {
-      margin-top: 16.25rem;
       @media only screen and (max-width: 768px) {
         margin-top: 3.75rem;
+        padding-bottom: 10px;
+      }
+      .firstPartImg{
+        display:flex;
+        flex-direction: column;
+
+      }
+      .introduce{
+        height:35px;
+        margin-top:20px;
       }
       .firstDes {
-        margin: 2.3125rem 0 0 2.6875rem;
+        margin: 2.3125rem 0 0 0;
         @media only screen and (max-width: 768px) {
           width: 100%;
-          padding: 2.3125rem 2.6875rem 0 2.6875rem;
+          padding: 2.3125rem 2.6875rem 0 0;
           margin: 0;
         }
       }
@@ -281,7 +340,6 @@ export default styled(Layout)`
     }
     .secondPart {
       text-align: right;
-      margin: 45.3125rem 0 14.0625rem 0;
       @media only screen and (max-width: 768px) {
         margin: 7.375rem 0 8.5rem 0;
       }
@@ -335,31 +393,49 @@ export default styled(Layout)`
     max-width: 75rem;
     margin: 13.5625rem auto 6.25rem auto;
     position: relative;
+    display: flex;
+    flex-direction: column;
     @media only screen and (max-width: 768px) {
       width: calc(100% - 2.5rem);
-      margin: 2.5rem 1.25rem 1.25rem 1.25rem;
+      margin: 5rem 1.25rem 1.25rem 1.25rem;
     }
     .partner-img {
       width: 100%;
+      @media only screen and (max-width: 768px) {
+        height:10px;
+      }
+    }
+    .partner-bottom{
+      width: 100%;
+      position:relative;
+      top:-1.2rem;
+      @media only screen and (max-width: 768px) {
+        height:10px;
+      }
     }
     .topic {
-      position: absolute;
-      top: -0.9375rem;
+      height: 3.2rem;
+      width: 24rem;
+      margin-bottom:35px;
       @media only screen and (max-width: 768px) {
-        width: 17.6875rem;
-        top: -0.3125rem;
+        width: 15.6875rem;
+        height: 2.5rem;
       }
     }
     .main {
-      padding: 5rem 2.375rem 0 2.375rem;
+      padding: 4rem 2.375rem 3rem 2.375rem;
       display: flex;
       flex-wrap: wrap;
       background-image: url(${partner});
       background-size: 100% 100%;
       background-repeat: no-repeat;
+      position: relative;
+      width: 98%;
+      top: -1rem;
+      margin-left: 1%;
       @media only screen and (max-width: 768px) {
         padding: 3.75rem 2.375rem 0 2.375rem;
-        background-image: url(${partnerPhone});
+        top: -0.6rem;
       }
       .blank {
         width: 20%;

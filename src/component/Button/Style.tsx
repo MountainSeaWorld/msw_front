@@ -4,12 +4,12 @@ import BtnNDanger from "@img/button-normal-danger.png";
 import BtnNDefault from "@img/button-normal-default.png";
 import BtnSDefault from "@img/button-small-default.png";
 import BtnSPrimary from "@img/button-small-primary.png";
-
+import buyBtn from "@img/store-buy-btn.png"
 export default styled.div<{
   disabled: boolean;
   width: string;
   size: "large" | "normal" | "small";
-  type: "default" | "primary" | "danger";
+  type: "default" | "primary" | "danger" | "buy";
 }>`
   ${(props) => {
     if (props.size === "large" && props.type === "default") {
@@ -31,18 +31,22 @@ export default styled.div<{
       return css`
         background-image: url(${BtnSPrimary});
       `;
-    } else {
+    } else if(props.type === "buy"){
+      return css`
+        background-image: url(${buyBtn});
+      `;
+    }else{
       return css`
         background-image: url(${BtnNDefault});
       `;
     }
   }}
   width: ${(props) => props.width};
-  height: 40px;
+  height: 35px;
   min-width: 6.75rem;
   font-size: 0.875rem;
   /* color: #ffffff; */
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 1);
   display: flex;
   justify-content: center;
   align-items: center;

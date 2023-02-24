@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { MenuBody } from "../Style";
 import Style from "./Style";
+import Icon from "@img/home/title-icon.png";
 
 /**
  * 操作项
@@ -45,6 +46,11 @@ export default function Menu({ goPage }: { goPage: (path: string) => void }) {
       >
         <span className="menu-txt">{t("header.box")}</span>
       </div>
+    <div className="menu-item">
+      <div className="icon">
+        <img src={Icon} />
+      </div>
+    </div>
 	  <div
 	    className={
 	      "menu-item" + (pathname === "/stake" ? " on" : " animation-button")

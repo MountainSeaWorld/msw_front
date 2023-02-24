@@ -217,7 +217,7 @@ export default function Filter({
           </div>
         </div>
         <div className="filter-item-button">
-          <Button size="large" onClick={changePrice}>
+          <Button size="large" type="buy" onClick={changePrice}>
             Apply
           </Button>
         </div>

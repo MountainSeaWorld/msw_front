@@ -328,6 +328,7 @@ export default function Market() {
                   <Sort setSort={setSort} />
                 </div>
               </div>
+              <div className="right-top-line"></div>
               <div className="content">
                 <List list={currenList} clickCard={setNftid} buyNft={buyNft} />
               </div>

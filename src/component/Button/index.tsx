@@ -23,7 +23,7 @@ export default function Button({
   onClick: Function;
   width?: string;
   size?: "large" | "normal" | "small";
-  type?: "default" | "primary" | "danger";
+  type?: "default" | "primary" | "danger" | "buy";
   disabled?: boolean;
   callbackData?: any;
 }) {

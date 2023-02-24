@@ -6,6 +6,7 @@ import MarketTitlePhone from "@img/market-title-phone.png";
 import StoreBg from "@img/store-bg.png";
 import FilterPhone from "@img/phone/filters-phone-main.png";
 import FilterIcon from "@img/filter-icon.png";
+import line from "@img/home/partner-top-line.png"
 
 export default styled(Layout)<{ nftid?: string }>`
   ${(props) => {
@@ -42,6 +43,10 @@ export default styled(Layout)<{ nftid?: string }>`
       margin-top: 6.875rem;
     }
   }
+  .left{
+    position:relative;
+    top:46px;
+  }
   .market-tips {
     font-size: 1.125rem;
     font-weight: bold;
@@ -51,11 +56,18 @@ export default styled(Layout)<{ nftid?: string }>`
       margin: 1.25rem 0;
     }
   }
+  .right-top-line{
+    background:url(${line});
+      height:13px;
+
+  }
   .market-content {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
+    padding-bottom:100px;
+    width:80%;
     @media only screen and (max-width: 768px) {
       display: block;
       margin-top: 0rem;
@@ -115,6 +127,7 @@ export default styled(Layout)<{ nftid?: string }>`
         }
         .sort {
           float: right;
+          margin-bottom:10px;
           @media only screen and (max-width: 768px) {
             width: 100%;
             padding: 0 1.5625rem;
