@@ -4,8 +4,10 @@ import MenuMiddleOn from "@img/menu-middle-on.png";
 
 export default styled.div`
   display: flex;
+  align-items:center;
+
   .menu-item {
-    margin:0 1.3rem;
+    margin:0 1.8rem;
     text-align: center;
     background-size: 100% 100%;
     cursor: pointer;
@@ -19,6 +21,8 @@ export default styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      
+      color:#fff;
       .icon {
         display: inline-flex;
         width: 0.75rem;

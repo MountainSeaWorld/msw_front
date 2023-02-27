@@ -37,6 +37,8 @@ export default styled(Layout)`
     color: #ffffff;
     display: flex;
     justify-content: center;
+
+    z-index:999;
     .label {
       opacity: 0.5;
     }
@@ -48,6 +50,7 @@ export default styled(Layout)`
     position: absolute;
     top: 48.8125rem;
     width: 10.5rem;
+    z-index:999;
   }
 `;
 

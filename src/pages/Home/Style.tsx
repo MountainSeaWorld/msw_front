@@ -11,6 +11,7 @@ import partner from "@img/home/partner-bg.png";
 import partnerPhone from "@img/home/partner-phone.png";
 import homeBanner from "@img/home/home-banner.png"
 import secondbg from "@img/home/second-bg.png"
+import secondbgPhone from "@img/home/second-bg-phone.png"
 import timeBg from "@img/home/time-line-bg.png"
 
 export default styled(Layout)`
@@ -93,6 +94,9 @@ export default styled(Layout)`
             font-size: 1.875rem;
             color: white;
             font-family: "ErasITC-Bold";
+            @media (max-width: 768px) {
+              font-size: 1.475rem;
+            }
           }
           .timeDetail {
             font-size: 0.875rem;
@@ -290,6 +294,9 @@ export default styled(Layout)`
     background-repeat:no-repeat;
     @media only screen and (max-width: 768px) {
       padding: 30px  1.25rem 0 1.25rem;
+      background-image:url(${secondbgPhone});
+
+      background-size:auto;
     }
     .des {
       width: 40.625rem;
@@ -298,10 +305,13 @@ export default styled(Layout)`
     }
     .topicImg {
       max-width: 60%;
+      @media only screen and (max-width: 768px) {
+            width: 24%;
+      }
     }
     .firstPart {
       @media only screen and (max-width: 768px) {
-        margin-top: 3.75rem;
+        margin-top: 1.75rem;
         padding-bottom: 10px;
       }
       .firstPartImg{
@@ -312,6 +322,9 @@ export default styled(Layout)`
       .introduce{
         height:35px;
         margin-top:20px;
+        @media only screen and (max-width: 768px) {
+          height:23px;
+        }
       }
       .firstDes {
         margin: 2.3125rem 0 0 0;
@@ -341,7 +354,7 @@ export default styled(Layout)`
     .secondPart {
       text-align: right;
       @media only screen and (max-width: 768px) {
-        margin: 7.375rem 0 8.5rem 0;
+        margin: 3.375rem 0 6.5rem 0;
       }
       .secondDes {
         display: flex;
@@ -360,6 +373,7 @@ export default styled(Layout)`
           margin-top: 42px;
           @media only screen and (max-width: 768px) {
             justify-content: center;
+            margin-top: 100px;
           }
         }
         &.bu1 {
@@ -370,9 +384,9 @@ export default styled(Layout)`
         }
       }
       .blind {
-        width: 290px;
-        height: 65px;
-        line-height: 65px;
+        width: 250px;
+        height: 55px;
+        line-height: 55px;
         text-align: center;
         cursor: pointer;
         background-image: url(${Default});

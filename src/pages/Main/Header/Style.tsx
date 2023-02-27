@@ -5,7 +5,9 @@ import MenuLeftOn from "@img/menu-left-on.png";
 import MenuRightOff from "@img/menu-right-off.png";
 import MenuRightOn from "@img/menu-right-on.png";
 import MenuMiddleOn from "@img/menu-middle-on.png";
-import navbg from "@img/home/nav-bg.png"
+import navbg from "@img/home/nav-bg.png";
+
+import navLine from "@img/nav-line.png";
 import { Menu } from "antd";
 
 export default styled.div`
@@ -13,6 +15,9 @@ export default styled.div`
   height: 6.5625rem;
   max-width: 100%;
   transition: all 2s ease-out;
+  .menu-line{
+    height: 15px;
+  }
   .navbg{
     background:url(${navbg});
     width:100%;
@@ -68,13 +73,19 @@ export default styled.div`
     color: transparent;
   }
   @media only screen and (max-width: 768px) {
-    height: 3.25rem;
+    height: 4.25rem;
     padding: 0;
     width: 100%;
     .navbg{
-      padding-top:16px;
+      padding-top:23px;
       width:22rem;
 
+    }
+    .icon-phone{
+      width:3rem;
+    }
+    .menu-line{
+      margin:0 19px;
     }
     .left {
       width: 7.5rem;
@@ -90,7 +101,6 @@ export default styled.div`
       height: 3.375rem;
       margin-bottom: 0.3125rem;
       position:relative;
-      left:30px;
       > div {
         padding-right: 0.9375rem;
         padding-top: 0.375rem;
@@ -104,26 +114,30 @@ export default styled.div`
       }
     }
     .middle {
-      width: 7.1875rem;
       height: 2.75rem;
       margin-top: 0.125rem;
-      margin-right:1rem;
       line-height: 2.75rem;
       text-align: center;
       background-size: 100% 100%;
+      display:flex;
+      width:14rem;
+      align-items: center;
       .menu {
-        color: #8081a6;
+        color: #fff;
         display: flex;
         justify-content: space-evenly;
+        align-items:center;
         .icon {
-          width: 12px;
-          height: 8px;
+            width: 13px;
+            height: 6px;
+            margin-left: 7px;
         }
       }
     }
     .menu-txt {
       line-height: 2.75rem;
-      font-size: 0.875rem;
+
+      font-size:14px;
     }
   }
 `;
@@ -133,6 +147,13 @@ export const MenuBody = styled(Menu)`
   background-color: rgba(30, 17, 17, 0.8);
   text-align: center;
   border-right: none;
+  left:-3px;
+  .drop-menu-label{
+    border-bottom:solid 1px #8c443c;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 5px;
+  }
   .ant-dropdown-menu-item-active {
     background-color: #301c1c;
     color: white;
@@ -152,6 +173,6 @@ export const MenuBody = styled(Menu)`
       #838383 100%
     );
     -webkit-background-clip: text;
-    color: transparent;
+    color: #fff;
   }
 `;

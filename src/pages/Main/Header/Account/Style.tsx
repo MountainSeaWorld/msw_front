@@ -7,7 +7,7 @@ export default styled.div`
 
   .link-success{
     display: inline-block;
-    width: 13rem;
+    width: 11rem;
     text-align: center;
   }
   .link-menu{
@@ -24,7 +24,7 @@ export default styled.div`
     position: relative;
     font-family: ArialMT;
     font-size: 0.875rem;
-    color: rgba(255,255,255,0.5);;
+    color: rgba(255,255,255,1);;
     margin-top:2.5rem;
     @media only screen and (max-width: 768px) {
       margin-top:0;

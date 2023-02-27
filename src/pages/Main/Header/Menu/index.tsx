@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 import { MenuBody } from "../Style";
 import Style from "./Style";
 import Icon from "@img/home/title-icon.png";
+import navLine from "@img/nav-line.png";
+import navDrop from "@img/nav-drop.png";
 
 /**
  * 操作项
@@ -26,6 +28,7 @@ export default function Menu({ goPage }: { goPage: (path: string) => void }) {
       >
         <span className="menu-txt">{t("header.home")}</span>
       </div>
+      <img className="menu-line" src={navLine} />
       <div
         className={
           "menu-item" + (pathname === "/store" ? " on" : " animation-button")
@@ -36,6 +39,7 @@ export default function Menu({ goPage }: { goPage: (path: string) => void }) {
       >
         <span className="menu-txt">{t("header.store")}</span>
       </div>
+      <img className="menu-line" src={navLine} />
       <div
         className={
           "menu-item" + (pathname === "/box" ? " on" : " animation-button")
@@ -46,21 +50,23 @@ export default function Menu({ goPage }: { goPage: (path: string) => void }) {
       >
         <span className="menu-txt">{t("header.box")}</span>
       </div>
-    <div className="menu-item">
-      <div className="icon">
-        <img src={Icon} />
+      <div className="menu-item">
+        <div className="icon">
+          <img src={Icon} />
+        </div>
       </div>
-    </div>
-	  <div
-	    className={
-	      "menu-item" + (pathname === "/stake" ? " on" : " animation-button")
-	    }
-	    onClick={() => {
-	      goPage("/stake");
-	    }}
-	  >
-	    <span className="menu-txt">{t("header.stake")}</span>
-	  </div>
+      <div
+        className={
+          "menu-item" + (pathname === "/stake" ? " on" : " animation-button")
+        }
+        onClick={() => {
+          goPage("/stake");
+        }}
+      >
+        <span className="menu-txt">{t("header.stake")}</span>
+      </div>
+
+      <img className="menu-line" src={navLine} />
       <div
         className={
           "menu-item" + (pathname === "/market" ? " on" : " animation-button")
@@ -71,6 +77,8 @@ export default function Menu({ goPage }: { goPage: (path: string) => void }) {
       >
         <span className="menu-txt">{t("header.market")}</span>
       </div>
+
+      <img className="menu-line" src={navLine} />
     </Style>
   );
 }
@@ -105,6 +113,7 @@ export function PhoneMenu({ goPage }: { goPage: (path: string) => void }) {
 
   return (
     <>
+
       <Dropdown
         trigger={["click"]}
         overlay={
@@ -112,21 +121,21 @@ export function PhoneMenu({ goPage }: { goPage: (path: string) => void }) {
             items={[
               {
                 key: "home",
-                label: t("header.home"),
+                label:(<span className="drop-menu-label">{t("header.home")}</span>),
                 onClick: () => goPage("/"),
               },
               {
                 key: "store",
-                label: t("header.store"),
+                label: (<span className="drop-menu-label">{t("header.store")}</span>),
                 onClick: () => goPage("/store"),
               },
               {
                 key: "box",
-                label: t("header.box1"),
+                label: (<span className="drop-menu-label">{t("header.box1")}</span>),
                 onClick: () => goPage("/box"),
               },{
                 key: "stake",
-                label: t("header.stake"),
+                label: (<span className="drop-menu-label">{t("header.stake")}</span>),
                 onClick: () => goPage("/stake"),
               },
               {
@@ -141,13 +150,14 @@ export function PhoneMenu({ goPage }: { goPage: (path: string) => void }) {
       >
         <div className="menu menu-txt">
           {menu}
-          <div className="icon">
-            <svg viewBox="0 0 12 8">
-              <path d="M 0 0 L 12 0 L 6 8 z" fill="#8081a6" />
-            </svg>
-          </div>
+          <img  className="icon" src={navDrop} />
+
         </div>
       </Dropdown>
+      <img className="menu-line" src={navLine} />
+      <img  className="icon-phone" src={Icon} />
+
+      <img className="menu-line" src={navLine} />
     </>
   );
 }

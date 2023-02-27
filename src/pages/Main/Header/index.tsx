@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Account from "./Account";
 import { useAppSelector } from "@ar/hooks";
 
+
 /**菜单栏 */
 export default function Header() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export default function Header() {
     return (
       <Style>
         <div className="navbg">
-          
+
           <div className="middle">
             {window.isPhone ? (
               <PhoneMenu goPage={goPage} />
