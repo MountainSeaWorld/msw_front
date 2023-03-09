@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.14fa819e.css",
-    "main.js": "./static/js/main.e0884d06.js",
+    "main.js": "./static/js/main.e91411ef.js",
     "static/js/563.db239546.chunk.js": "./static/js/563.db239546.chunk.js",
     "static/js/27.b633fae2.chunk.js": "./static/js/27.b633fae2.chunk.js",
     "static/js/299.2cab19f5.chunk.js": "./static/js/299.2cab19f5.chunk.js",
@@ -37,7 +37,6 @@
     "static/media/menu-left-on.png": "./static/media/menu-left-on.ee761e8fc3d4c3b401ab.png",
     "static/media/market-title-phone.png": "./static/media/market-title-phone.a54a45caa198dc0662cc.png",
     "static/media/time-line-bg.png": "./static/media/time-line-bg.ee9ca45f47493a6a73ed.png",
-    "static/media/footerLogo.png": "./static/media/footerLogo.c4562e5e413ed4867007.png",
     "static/media/transactions.png": "./static/media/transactions.7d257a56ea2091d703c8.png",
     "static/media/button-large-default.png": "./static/media/button-large-default.1c7e5e06b6261f5a84b6.png",
     "static/media/introduction.png": "./static/media/introduction.349356441e456baeb733.png",
@@ -50,6 +49,6 @@
   },
   "entrypoints": [
     "static/css/main.14fa819e.css",
-    "static/js/main.e0884d06.js"
+    "static/js/main.e91411ef.js"
   ]
 }
