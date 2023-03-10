@@ -65,12 +65,8 @@ export default function Pagination({
   } else {
     return (
       <Style>
-        <div className="pagination-button">
-          <Button onClick={clickPre} size="small">
-            <svg viewBox="0 0 12 18">
-              <path d="M 12 0 L 12 18 L 0 9 z" fill="rgba(255,255,255,0.5)" />
-            </svg>
-          </Button>
+        <div className="pagination-button prev-page"  onClick={clickPre}>
+
         </div>
         {!window.isPhone ? (
           <>
@@ -96,12 +92,8 @@ export default function Pagination({
             {pageIndex} / {max}
           </span>
         )}
-        <div className="pagination-button">
-          <Button onClick={clickNext} size="small">
-            <svg viewBox="0 0 12 18">
-              <path d="M 0 0 L 12 9 L 0 18 z" fill="rgba(255,255,255,0.5)" />
-            </svg>
-          </Button>
+        <div className="pagination-button next-page" onClick={clickNext}>
+
         </div>
       </Style>
     );

@@ -173,7 +173,6 @@ export const ModalBody = styled.div`
     margin: 0 1.25rem;
     padding-bottom: 1.125rem;
     text-align: center;
-    border-bottom: 0.0625rem solid #362828;
   }
   .amount {
     margin-top: 1.5625rem;
@@ -191,14 +190,13 @@ export const ModalBody = styled.div`
       text-align: left;
     }
   }
+  .number{
+    background: #130202!important;
+    border-radius:10px 10px!important;
+  }
   .price {
     height: 4rem;
-    background: linear-gradient(
-      180deg,
-      rgba(3, 3, 3, 0.41),
-      rgba(45, 37, 32, 0.48),
-      rgba(177, 164, 155, 0.12)
-    );
+
     text-align: center;
     color: #ffffff;
     display: flex;

@@ -24,9 +24,9 @@ export default function Market() {
     marketNFTList: list,
     tokenName,
     nativeTokenName,
-  } = useAppSelector((state) => state.web3Info); //原始数据
+  } = useAppSelector((state) => state.web3Info); 
   const [open, setOpen] = useState(false);
-  const [currenList, setCurrentList] = useState<NFTCard[]>([]); //筛选排序之后的数据
+  const [currenList, setCurrentList] = useState<NFTCard[]>([]); 
   const { getMarketNftList, getMyNftList } = useApi();
   const web3Object = useWeb3Object();
   const location = useLocation();
@@ -61,7 +61,7 @@ export default function Market() {
     }
   }, [location, refreshList, web3Object]);
 
-  //筛选
+  //filter
   const [filter, setFilter] = useSetState<FilterBody>({
     search: "",
     state: "sale",
@@ -70,37 +70,37 @@ export default function Market() {
     },
     quality: "all",
   });
-  //排序
+  //sort
   const [sort, setSort] = useSetState<SortBody>({
     price: "",
     time: "newest",
   });
 
-  //重新修改列表
+  //reset filter list
   useEffect(() => {
     const filterFunc = (ele: NFTCard) => {
       if (filter.search && !~ele.id.indexOf(filter.search)) {
-        //如果存在search搜索
+        // exist search
         return false;
       }
       if (filter.state === "sale" && !ele.isSale) {
-        //选择售卖的ntf
+        //select sale ntf
         return false;
       }
       if (filter.price.unit && filter.price.unit !== ele.unit) {
-        //价格单位对不上
+        //price and unit error
         return false;
       }
       if (filter.price.min && ele.price < filter.price.min) {
-        //价格超过最小值
+        //price over lowerest price
         return false;
       }
       if (filter.price.max && ele.price > filter.price.max) {
-        //价格超过最大值
+        //prive over hightest price
         return false;
       }
       if (filter.quality !== "all" && filter.quality !== ele.quality) {
-        //质量筛选
+        //level search
         return false;
       }
       return true;
@@ -137,26 +137,26 @@ export default function Market() {
     nftid: undefined,
   });
 
-  //购买nft
+  //buy nft
   const buyNft = useMemoizedFn(async (nftInfo: NFTCard) => {
-    //判断是否登录
+    //check login
     if (!account || !web3Object) {
       dispatch(setLoginVisible(true));
       return;
     }
-    //判断是否有nft
+    //check have nft
     if (!nftInfo) {
       return message.error(t("message.ne"));
     }
-    //判断购买的nft不是自己上架的
+    //chech buy the nft not is mine
     if (nftInfo.address?.toLocaleLowerCase() === account.toLocaleLowerCase()) {
       return message.warn(t("message.db"));
     }
-    //开始买
+    //start buy
     dispatch(addSpining());
-    //判断用户钱包是否足够
+    //balance enough
     if (nftInfo.unit === tokenName) {
-      //代币判断
+      
       const TokenBanlance = await web3Object.ContractToken.methods
         .balanceOf(account)
         .call()
@@ -164,19 +164,19 @@ export default function Market() {
           return fromWei(res);
         });
       if (TokenBanlance < nftInfo.price) {
-        //代币余额不足
+        //balance error
         dispatch(delSpining());
         return message.warn(t("message.it"));
       }
     } else if (nftInfo.unit === nativeTokenName) {
-      //原生币判断
+      
       const Banlance = await web3Object.web3.eth
         .getBalance(account)
         .then((res) => {
           return web3Object.web3.utils.fromWei(res, "ether");
         });
       if (Banlance < nftInfo.price) {
-        //原生币余额不足
+        
         dispatch(delSpining());
         return message.warn(t("message.it"));
       }
@@ -184,33 +184,33 @@ export default function Market() {
       dispatch(delSpining());
       return message.error(t("message.pr"));
     }
-    //授权
+    //approve
     const isApprove = await web3Object.ContractCards.methods
       .isApprovedForAll(account, config.MarketAddress)
       .call();
     if (!isApprove) {
-      //如果没授权
+      //if not approve
       await web3Object.ContractCards.methods
         .setApprovalForAll(config.MarketAddress, true)
         .send({
           from: account,
         })
         .on("transactionHash", function (hash: any) {
-          console.log("购买nft授权", hash);
+          console.log( hash);
         })
         .on("receipt", async (receipt: any) => {
-          console.log("购买nft授权", receipt);
+          console.log( receipt);
         })
         .on("error", function (error: any) {
-          console.log("购买nft授权", error);
+          console.log( error);
           message.error(error.message);
           dispatch(delSpining());
         });
     }
 
-    //用户代币授权
+    //to approve
     if (nftInfo.unit === tokenName) {
-      //获取用户授权金额-market商城
+      //get approve
       const allowance = await web3Object.ContractToken.methods
         .allowance(account, config.MarketAddress)
         .call()
@@ -219,26 +219,26 @@ export default function Market() {
         });
 
       if (allowance < nftInfo.price) {
-        //授权金额不足，需要授权-store商城
+        //approve not enough，please go to approve
         await web3Object.ContractToken.methods
           .approve(config.MarketAddress, toWei(nftInfo.price))
           .send({
             from: account,
           })
           .on("transactionHash", function (hash: any) {
-            console.log("授权金额", hash);
+            console.log( hash);
           })
           .on("receipt", async (receipt: any) => {
-            console.log("授权金额", receipt);
+            console.log( receipt);
           })
           .on("error", function (error: any) {
-            console.error("授权金额", error);
+            console.error( error);
             message.error(error.message);
             dispatch(delSpining());
           });
       }
     }
-    //购买
+    //buy
     await web3Object.ContractMarket.methods
       .purchase(nftInfo.marketEventIndex)
       .send({
@@ -249,21 +249,20 @@ export default function Market() {
             : undefined,
       })
       .on("transactionHash", function (hash: any) {
-        console.log("购买nft", hash);
+        console.log( hash);
       })
       .on("receipt", async (receipt: any) => {
-        console.log("购买nft", receipt);
+        console.log( receipt);
         message.success(t("message.ps"));
         getMarketNftList(true).then(() => {
           if (nftid) {
-            //如果在详情页，则返回
             navigate(-1);
           }
         });
         getMyNftList(account, true);
       })
       .on("error", function (error: any) {
-        console.log("购买nft", error);
+        console.log( error);
         message.error(error.message);
       })
       .finally(() => {

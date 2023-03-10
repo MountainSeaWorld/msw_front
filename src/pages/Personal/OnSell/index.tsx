@@ -20,7 +20,7 @@ export default function OnSell({ visible }: { visible: boolean }) {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  /**查询市场数据 */
+
   const init = useMemoizedFn((isForce?: boolean) => {
     getMarketNftList(isForce).then((res) => {
       setList(
@@ -58,7 +58,7 @@ export default function OnSell({ visible }: { visible: boolean }) {
     });
   });
 
-  //取消售卖
+
   const cancel = useMemoizedFn((_e: any, item: NFTCard) => {
     if (!web3Object || !account) {
       return;
@@ -70,17 +70,17 @@ export default function OnSell({ visible }: { visible: boolean }) {
         from: account,
       })
       .on("transactionHash", function (hash: any) {
-        console.log("取消售卖", hash);
+        console.log( hash);
       })
       .on("receipt", async (receipt: any) => {
-        console.log("取消售卖", receipt);
-        //取消成功
+        console.log( receipt);
+        
         init(true);
         getMyNftList(account, true);
         message.success(t("message.sc"));
       })
       .on("error", function (error: any) {
-        console.log("取消售卖", error);
+        console.log( error);
         message.error(error.message);
       })
       .finally(() => {

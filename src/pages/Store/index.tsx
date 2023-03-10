@@ -24,17 +24,17 @@ export default function Store() {
   const navigate = useNavigate();
   const { getMyNftList } = useApi();
   const { t } = useTranslation();
-  const [open, { setFalse, setTrue }] = useBoolean(false); //购买弹窗
-  const [amount, setAmount] = useState(); //购买数量
-  const [propsId, setPropsId] = useState(0); //购买的道具id
-  const [supply, setSupply] = useState(100); //供应量
-  const [unitPrice, setUnitPrice] = useState(0.0047); //单价
-  const [totalPrice, setTotalPrice] = useState(0); //总价
+  const [open, { setFalse, setTrue }] = useBoolean(false);
+  const [amount, setAmount] = useState(); //
+  const [propsId, setPropsId] = useState(0); //
+  const [supply, setSupply] = useState(100); //
+  const [unitPrice, setUnitPrice] = useState(0.0047); //
+  const [totalPrice, setTotalPrice] = useState(0); //
   const { active, account } = useWeb3React();
   const web3Object = useWeb3Object();
-  const { nativeTokenName } = useAppSelector((state) => state.web3Info); //代币名称和精度
-  const [isCard, setIsCard] = useState(false); //是否持有会员卡
-  const [isBuyed, setIsBuyed] = useState(0); //是否购买完成-每次购买完成自动+1
+  const { nativeTokenName } = useAppSelector((state) => state.web3Info); //
+  const [isCard, setIsCard] = useState(false); //
+  const [isBuyed, setIsBuyed] = useState(0); //
   const [storePrice, setStorePrice] = useState({
     box: {
       price: 0,
@@ -44,13 +44,18 @@ export default function Store() {
       price: 0,
       supply: 0,
     },
-  }); //商店价格和数量
+  }); 
+
+  const [buyStatus, setBuyStatus] = useState(true);
+
   const dispatch = useAppDispatch();
   const { toNativeWei, fromWei } = useWeb3Utils();
   const RootDom = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     RootDom.current = document.getElementById("root");
+
+
   }, []);
 
   useEffect(() => {
@@ -63,6 +68,15 @@ export default function Store() {
   }, []);
 
   useEffect(() => {
+    if (web3Object) {
+      const status_buy = web3Object.ContractStore.methods
+        .getPurchaseStatus().call().then((res:any)=>{
+          setBuyStatus(res)
+        });
+    }
+  }, [active, web3Object, account]);
+
+  useEffect(() => {
     let currentTotal = Decimal.mul(unitPrice, amount || 0).toNumber();
     console.log(currentTotal, amount, unitPrice)
     if (isCard && category === "Box") {
@@ -72,7 +86,7 @@ export default function Store() {
   }, [unitPrice, amount, isCard, category]);
 
   function openBuyGuild() {
-    //判断是否登录
+   
     if (!(active && account && web3Object)) {
       dispatch(setLoginVisible(true));
       return;
@@ -84,7 +98,11 @@ export default function Store() {
     setPropsId(config.CardTokenId);
   }
   function openBuyBox() {
-    //判断是否登录
+    if(buyStatus){
+      message.warn("Box is not yet open");
+      return
+    }
+    
     if (!(active && account && web3Object)) {
       dispatch(setLoginVisible(true));
       return;
@@ -99,7 +117,7 @@ export default function Store() {
     console.log(current)
     setAmount(current || 0);
   }
-  /**购买道具 */
+ 
   async function buy() {
 
 
@@ -107,32 +125,33 @@ export default function Store() {
       message.warn(t("message.pet"));
       return;
     }
-    //判断是否登录
+
+    
     if (!(active && account && web3Object)) {
       dispatch(setLoginVisible(true));
       setFalse();
       return;
     }
-    //判断道具供应量
+   
     if ((amount || 0) > supply) {
       message.warn(t("message.is"));
       return;
     }
-    //开始链接链
+    
     dispatch(addSpining());
-    //原生币判断
+    
     const Banlance = await web3Object.web3.eth
       .getBalance(account)
       .then((res) => {
         return web3Object.web3.utils.fromWei(res, "ether");
       });
     if (Number(Banlance) <= Number(totalPrice)) {
-      //原生币不足
+      
       dispatch(delSpining());
       return message.warn(t("message.it"));
     }
 
-    //购买道具
+    
     await web3Object.ContractStore.methods
       .purchase(propsId, amount)
       .send({
@@ -140,12 +159,10 @@ export default function Store() {
         value: toNativeWei(totalPrice),
       })
       .on("transactionHash", function (hash: any) {
-        // console.log('获取随机数', hash)
-        console.log("购买道具", propsId, hash);
+        console.log( propsId, hash);
       })
       .on("receipt", async (receipt: any) => {
-        // console.log('获取随机数', receipt)
-        console.log("购买道具", propsId, receipt);
+        console.log( propsId, receipt);
         message.success(t("message.ps"));
         if (account && web3Object) {
           getMyNftList(account,true);
@@ -158,7 +175,7 @@ export default function Store() {
         }
       })
       .on("error", function (error: any) {
-        console.log("购买道具", propsId, error);
+        console.log( propsId, error);
         message.error(error.message);
       })
       .then(() => {
@@ -191,18 +208,18 @@ export default function Store() {
   );
 
   useEffect(() => {
-    //用户购买之后读取
+    
     if (!active || !web3Object || !account) {
       return;
     }
     if (isCard) {
-      //用户已有工会卡
+      
       return;
     }
     getIsCard();
   }, [active, account, web3Object, dispatch, isCard, isBuyed, getIsCard]);
   useEffect(() => {
-    //切换用户之后触发
+    
     if (!active || !web3Object || !account) {
       return;
     }
@@ -213,7 +230,6 @@ export default function Store() {
     if (!web3Object) {
       return;
     }
-    //读取盲盒和工会卡的剩余数量和价格
     dispatch(addSpining());
     Promise.all([
       web3Object.ContractStore.methods.propStores(config.BOXTokenId).call(),

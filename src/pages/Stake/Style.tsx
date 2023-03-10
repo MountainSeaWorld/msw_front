@@ -334,4 +334,5 @@ export default styled(Layout)`
   margin-top:50px;
   border-top:none;
 }
+
 `;

@@ -24,7 +24,7 @@ export default function MyNft({
       }>
     >
   ) => void;
-  openSale: (nftInfo: NFTCard) => void; //点击打开售卖窗口
+  openSale: (nftInfo: NFTCard) => void; 
 }) {
   const { getMyNftList } = useApi();
   const list = useAppSelector((state) => state.web3Info.myNftList);
@@ -57,7 +57,7 @@ export default function MyNft({
     [setPageInfo]
   );
 
-  //点击sell按钮
+
   const sell = useMemoizedFn((item: NFTCard) => {
     clickNft({ nftid: item.id });
   });

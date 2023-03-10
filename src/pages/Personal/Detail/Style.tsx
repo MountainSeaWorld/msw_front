@@ -41,7 +41,7 @@ export default styled.div`
     }
     .img {
       grid-area: a;
-      background: linear-gradient(180deg, #12090a, #281b18, #1b1110);
+      background: linear-gradient(to right, #52221a,#290f0c);;
       border: 0.0625rem solid #574444;
       border-radius: 0.625rem;
       min-height: 31.25rem;
@@ -69,7 +69,7 @@ export default styled.div`
     }
   }
   .card {
-    background: #110909;
+    background: #000;
     border: 0.0625rem solid #574444;
     border-radius: 0.625rem;
     @media only screen and (max-width: 768px) {
@@ -79,7 +79,7 @@ export default styled.div`
       height: 3.75rem;
       font-size: 1.125rem;
       line-height: 3.75rem;
-      background: #190e0e;
+      background: linear-gradient(to right, #52221a,#290f0c);;
       border: 0.0625rem solid #574444;
       border-radius: 0.625rem 0.625rem 0rem 0rem;
       padding-left: 1.25rem;

@@ -23,7 +23,7 @@ import { MenuBody } from "../Style";
 import { useUpdateEffect } from "ahooks";
 import { useTranslation } from "react-i18next";
 
-/**钱包登录 */
+
 export default function Account({
   goPage,
 }: {
@@ -39,20 +39,20 @@ export default function Account({
   const { t } = useTranslation();
 
 
-  /**打开链接钱包 */
+  // open connect wallet
   function connect() {
     dispatch(setLoginVisible(true));
   }
-  /**关闭链接钱包 */
+  /**close connect wallet */
   function closeConnect() {
     dispatch(setLoginVisible(false));
   }
 
-  /**模拟退出钱包 */
+  /**logout account */
   // function disConnect() {
   //   setAccount("");
   // }
-  //跳转到个人页面
+  //enter personal
   function goPersonal() {
     goPage("/personal");
   }
@@ -60,28 +60,28 @@ export default function Account({
     deConnect();
   }
   useUpdateEffect(() => {
-    //退出回到首页，清理缓存
+    //back to home , clear storage
     if (!account) {
       goPage("/");
       dispatch(setMyNftList({ list: [], account: "" }));
     }
   }, [account]);
 
-  //链接metamask
+  //connect metamask
   function conMetamask() {
     connectMetaMask().then(() => {
       closeConnect();
       setImgSrc(MetaMask);
     });
   }
-  //链接binance
+  //connect binance
   function conBinance() {
     connectBinance().then(() => {
       closeConnect();
       setImgSrc(BinanceWallet);
     });
   }
-  //链接wallet
+  //connect wallet
   function conWallet() {
     connectWallet().then(() => {
       closeConnect();
@@ -93,7 +93,7 @@ export default function Account({
 
 
   useEffect(() => {
-    //初始化固定钱包图片
+  
     const connectorName = window.sessionStorage.getItem("connectorName");
     if (connectorName === ConnectorNames.Injected) {
       setImgSrc(MetaMask);
@@ -104,16 +104,11 @@ export default function Account({
     }
   }, []);
 
-  //存储全局配置
+  //storage
   useEffect(() => {
     if (!active || !web3Object) {
       return;
     }
-    //查询通用配置信息
-    //代币名称
-    //代币精度
-    //交易税
-    //元数据基础地址
     Promise.all([
       web3Object.ContractToken.methods.symbol().call(),
       web3Object.ContractToken.methods.decimals().call(),
@@ -164,23 +159,24 @@ export default function Account({
             <span className="link-succes">
               <div className="txt-img">
                 <img src={imgSrc} alt="" />
-              {formatAddress(account.substring(2), 2, 4)}
+                <span>{formatAddress(account.substring(2), 2, 4)}</span>
               </div>
             </span>
           </div>
         </Dropdown>
       ) : (
         <div className="account">
-          <span className="link-success">
+          <div className="link-success">
             <div className="txt-img">
               <img src={imgSrc} alt="" />
-            {formatAddress(account.substring(0), 2, 4)}
+              <div className="address-text">{formatAddress(account.substring(0), 2, 4)}</div>
             </div>
-          </span>
+          </div>
           <div className="txt-extra">
             <div className="menu-txt-label" onClick={goPersonal}>
               <div className="menu-txt">{t("header.personal")}</div>
             </div>
+            <div className="line"></div>
             <div className="menu-txt-label" onClick={logout}>
               <div className="menu-txt">{t("header.logout")}</div>
             </div>

@@ -36,9 +36,9 @@ export default styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    &:hover {
-      background-image: url(${MenuLeftOn});
-    }
+    // &:hover {
+    //   background-image: url(${MenuLeftOn});
+    // }
     .icon {
       width: 3.3125rem;
       height: 1.75rem;
@@ -55,9 +55,9 @@ export default styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    &:hover {
-      background-image: url(${MenuRightOn});
-    }
+    // &:hover {
+    //   background-image: url(${MenuRightOn});
+    // }
   }
   .menu-txt {
     font-family: ArialMT;

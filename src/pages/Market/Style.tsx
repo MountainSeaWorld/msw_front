@@ -57,8 +57,9 @@ export default styled(Layout)<{ nftid?: string }>`
     }
   }
   .right-top-line{
-    background:url(${line});
+    background-image:url(${line});
       height:13px;
+	  background-size:100% 100%;
 
   }
   .market-content {

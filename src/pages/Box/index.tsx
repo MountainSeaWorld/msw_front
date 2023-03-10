@@ -14,6 +14,8 @@ import BoxNftBlueImg from "@img/box-nft-blue-img.png";
 import BoxNftGreenImg from "@img/box-nft-green-img.png";
 import useApi from "@utils/useApi";
 import { useTranslation } from "react-i18next";
+import Input from "@com/Input";
+import PInput from "@img/page-input-bg.png";
 
 export default function Box() {
   const [opening, { setFalse: setIngFalse, setTrue: setIngTrue }] =
@@ -26,6 +28,8 @@ export default function Box() {
   const vedioRef = useRef<HTMLVideoElement>(null);
   const dispatch = useAppDispatch();
   const [toStore, setToStore] = useState(false); //提示盲盒不足，跳转store
+  const [openBoxFlag, setopenBoxFlag] = useState(false);
+  const [selectopenNum, setselectopenNum] = useState(1);
   const navigate = useNavigate();
   const RootDom = useRef<HTMLElement | null>(null);
   const { getMyNftList, getOpenEventList, getCardById } = useApi();
@@ -86,6 +90,12 @@ export default function Box() {
       setToStore(true);
       return;
     }
+    if(selectopenNum >boxNum || selectopenNum < 1 ){
+      message.error('amount error');
+      return;
+    }
+
+
     //访问合约
     dispatch(addSpining());
     //检查已开启盲盒数量是否超过设定
@@ -110,27 +120,27 @@ export default function Box() {
           from: account,
         })
         .on("transactionHash", function (hash: any) {
-          console.log("开盲盒合约授权", hash);
+
         })
         .on("receipt", async (receipt: any) => {
-          console.log("开盲盒合约授权", receipt);
+
         })
         .on("error", function (error: any) {
-          console.log("开盲盒合约授权", error);
+          dispatch(delSpining());
           message.error(error.message);
         });
     }
     //开盲盒
     await web3Object.ContractBox.methods
-      .open(1)
+      .open(selectopenNum)
       .send({
         from: account,
       })
       .on("transactionHash", function (hash: any) {
-        console.log("开盲盒", hash);
+
       })
       .on("receipt", async (receipt: any) => {
-        console.log("开盲盒", receipt);
+
         getOpenEventList()
           .then((openList) => {
             const myOpenList = openList.filter(
@@ -147,11 +157,11 @@ export default function Box() {
             if (openData.nftId) {
               return getCardById(openData.nftId);
             } else {
-              console.error("读取nft数据失败", "openData", openData);
               return Promise.reject();
             }
           })
           .then((data) => {
+            closeBoxNum()
             //设置获取的nft品质
             setQuality(data.quality);
             //播放动画
@@ -174,15 +184,32 @@ export default function Box() {
           });
       })
       .on("error", function (error: any) {
-        console.log("开盲盒", error);
-        dispatch(delSpining());
+        closeBoxNum()
         message.error(error.message);
+        dispatch(delSpining());
       })
       .finally(() => {
         dispatch(delSpining());
+        closeBoxNum()
       });
   }
-
+function reduceNum(){
+  setselectopenNum(1)
+}
+function addNum(){
+  setselectopenNum(boxNum)
+}
+function changePageIndex(e:any){
+  console.log(e)
+  if(e > boxNum){
+    setselectopenNum(boxNum)
+  }else{
+     setselectopenNum(1)
+  }
+}
+function closeBoxNum (){
+  setopenBoxFlag(false)
+}
   /**获取nft */
   function getNft() {
     if (!account) {
@@ -201,7 +228,9 @@ export default function Box() {
       queryBoxNum();
     });
   }
-
+function openBoxWindow(){
+  setopenBoxFlag(true)
+}
   return (
     <Style>
       <div className="back">
@@ -222,7 +251,7 @@ export default function Box() {
             <div className="value">{boxNum}</div>
           </div>
           <div className="button">
-            <Button onClick={openBox} type="buy">{t("open")}</Button>
+            <Button onClick={openBoxWindow} type="buy">{t("open")}</Button>
           </div>
         </>
       )}
@@ -250,6 +279,36 @@ export default function Box() {
           </div>
         </>
       )}
+
+      <Modal width={"31.25rem"} open={openBoxFlag} onCancel={closeBoxNum}>
+        <ModalBody>
+            <div className="selectOpenAmount-title">SELECT OPEN AMOUNT</div>
+          <div className="selectOpenAmount">
+               <div className="pagination-button"  onClick={reduceNum}>Min</div>
+               <Input
+                 type="number"
+                 backImg={PInput}
+                 InputNumberProps={{
+                   value:selectopenNum,
+                   onChange: changePageIndex
+                 }}
+               />
+               <div className="pagination-button" onClick={addNum}>Max</div>
+
+          </div>
+          <div className="buyButton">
+            <Button
+              size="small"
+              type="buy"
+              onClick={openBox}
+            >
+              OPEN
+            </Button>
+          </div>
+
+
+        </ModalBody>
+      </Modal>
       <Modal
         open={toStore}
         width={window.isPhone ? "90%" : "26.25rem"}

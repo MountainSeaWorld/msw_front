@@ -15,29 +15,41 @@ export default styled.div`
     display:inline-block;
     text-align:center;
     margin-top:2.2rem;
+    color:#fff;
     @media only screen and (max-width: 768px) {
       width:auto;
     margin-top:0;
     }
   }
+  .line{
+    height:1px;
+    background:#8c443c;
+    width:70%;
+    margin:0 auto;
+  }
   .account {
     position: relative;
     font-family: ArialMT;
     font-size: 0.875rem;
-    color: rgba(255,255,255,1);;
+    color: rgba(255,255,255,1);
     margin-top:2.5rem;
     @media only screen and (max-width: 768px) {
       margin-top:0;
     }
+    .address-text{
+      line-height:1.9rem;
+    }
     .txt-img{
       display:flex;
       justify-content:center;
+      align-items:center;
+      line-height: 1.5rem;
     }
     .txt-img>img {
       display: inline-block;
       width: 1.5rem;
       height: 1.5rem;
-      vertical-align: middle;
+      // vertical-align: middle;
       margin-right: 0.3125rem;
       @media only screen and (max-width: 768px) {
         width: 1rem;
@@ -47,29 +59,34 @@ export default styled.div`
     .txt-extra {
       position: absolute;
       width: 100%;
-      background-color: rgba(30, 17, 17, 0.8);
+      background-color: rgba(0,0,0,0.3);
       transform-origin: top;
       transform: scaleY(0);
       transition: transform 0.3s ease-out;
       text-align: center;
-      margin-top: -0.625rem;
+      margin-top: -5px;
+      right:0
+
       .menu-txt-label {
+
+        background:rgba(0,0,0,0.3);
         &:hover {
-          background-color: #301c1c;
+          // background-color: #301c1c;
         }
         .menu-txt {
-          line-height: 7.25rem;
-          &:hover {
-            color: white;
-          }
+          color:#fff;
+          line-height: 6.25rem;
+          // &:hover {
+          //   color: white;
+          // }
         }
       }
 
       .txt {
         line-height: 3.75rem;
-        &:hover {
-          background-color: #301c1c;
-        }
+        // &:hover {
+        //   background-color: #301c1c;
+        // }
       }
     }
     &:hover {

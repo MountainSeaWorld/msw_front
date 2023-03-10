@@ -13,7 +13,7 @@ import { message } from "antd";
 import { useTranslation } from "react-i18next";
 
 /**
- * - onChange：筛选变化
+ * - onChange：filter
  */
 export default function Filter({
   filter,
@@ -35,7 +35,7 @@ export default function Filter({
     }
   }, [onClick]);
 
-  //修改 nft state
+  //edit nft state
   // function changeState(checked: boolean, value: "sale" | "all") {
   //   if (checked) {
   //     setFilter({
@@ -43,12 +43,12 @@ export default function Filter({
   //     });
   //   }
   // }
-  //修改quality
+  //edit quality
   function changeQuality(checked: boolean, value: "0" | "1") {
     if (checked) {
-      //正选
+      
       if (filter.quality !== "") {
-        //全选
+        
         setFilter({
           quality: "all",
         });
@@ -58,9 +58,9 @@ export default function Filter({
         });
       }
     } else {
-      //反选
+     
       if (filter.quality === "all") {
-        //反选一个
+        
         setFilter({
           quality: value === "0" ? "1" : "0",
         });
@@ -72,7 +72,7 @@ export default function Filter({
     }
   }
 
-  // #region 修改search
+  // #region edit search
   const [search, setSearch] = useState("");
   function changeSearchVlue(e: any) {
     setSearch(e.target.value);
@@ -88,14 +88,14 @@ export default function Filter({
   }
   // #endregion
 
-  // #region 修改price
+  // #region edit price
   const [price, setPrice] = useSetState<FilterPrice>({
     unit: "",
   });
-  // //选择价格单位
+  // //choose price unit
   // function changePriceUnit(checked: boolean, value: string) {
   //   if (checked) {
-  //     //正选
+  //     
   //     setPrice({
   //       unit: value,
   //     });
@@ -105,19 +105,19 @@ export default function Filter({
   //     });
   //   }
   // }
-  //修改最低价格
+  //edit lowerest price
   function changePriceMin(value: any) {
     setPrice({
       min: value ? value : undefined,
     });
   }
-  //修改最高价格
+  //edit hightest price
   function changePriceMax(value: any) {
     setPrice({
       max: value ? value : undefined,
     });
   }
-  //确定价格筛选
+  //confirm filter data
   function changePrice() {
     if (price.min && price.max && price.min > price.max) {
       return message.warn(t("message.tm"));
@@ -127,7 +127,7 @@ export default function Filter({
       price: price,
     });
   }
-  //清理tag时同步price
+  //clear tag  edit price
   useEffect(() => {
     if (!filter.price.min && !filter.price.max && filter.price.unit === "") {
       setPrice({

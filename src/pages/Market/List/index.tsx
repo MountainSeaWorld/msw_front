@@ -53,7 +53,7 @@ export default function List({
         <>
           <div className="list">
             {viewList.map((item) => {
-              //判断是否是自己发布的
+              //if is my nft
               const isMy =
                 account?.toLocaleLowerCase() ===
                 item.address?.toLocaleLowerCase();
@@ -70,7 +70,7 @@ export default function List({
                           buyNft(item);
                           e.stopPropagation();
                         }}
-                        type={isMy ? "danger" : undefined}
+                        type={isMy ? "danger" : "default"}
                       >
                         <span className="card-button-text">{t("buy")}</span>
                       </Button>

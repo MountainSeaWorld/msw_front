@@ -17,7 +17,7 @@ export default function Detail({
   openSale,
 }: {
   nftid: string;
-  openSale: (nftInfo: NFTCard) => void; //点击打开售卖窗口
+  openSale: (nftInfo: NFTCard) => void; 
 }) {
   const navigate = useNavigate();
   const { getMyNftDetail } = useApi();
@@ -27,7 +27,7 @@ export default function Detail({
   const { t } = useTranslation();
 
   useEffect(() => {
-    //初始化自动滚动到顶部
+   
     document.getElementById("root")?.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -53,7 +53,7 @@ export default function Detail({
       });
   }, [nftid, account, web3Object, dispatch, getMyNftDetail]);
 
-  //卖
+  
   function sell() {
     if (nftInfo) {
       openSale(nftInfo);

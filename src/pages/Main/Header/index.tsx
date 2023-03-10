@@ -5,16 +5,16 @@ import Account from "./Account";
 import { useAppSelector } from "@ar/hooks";
 
 
-/**菜单栏 */
+
 export default function Header() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const headerVisible = useAppSelector((state) => state.state.headerVisible);
 
-  /**跳转页面 */
+ 
   function goPage(path: string) {
     if (pathname === path) {
-      //相同网址不跳
+      
       return;
     }
     navigate(path);

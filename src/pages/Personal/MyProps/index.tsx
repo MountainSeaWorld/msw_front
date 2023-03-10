@@ -54,7 +54,7 @@ export default function MyProps({ visible }: { visible: boolean }) {
     [setPageInfo]
   );
 
-  //使用道具
+
   const useProps = useMemoizedFn((_e: any, item: NFTCard) => {
     if (item.id === "Box") {
       navigate("/box");

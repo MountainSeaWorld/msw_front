@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useMemoizedFn } from "ahooks";
 import { useTranslation } from "react-i18next";
 
-/**筛选组件 */
+/**filter component */
 export default function Sort({ setSort }: { setSort: SetState<SortBody> }) {
   const { t } = useTranslation();
 

@@ -46,12 +46,12 @@ export default styled.div.attrs((props) => ({ key: props.id }))<{
   }
   .card-info {
     padding: 0.625rem;
-    background: linear-gradient(
-      180deg,
-      rgba(3, 3, 3, 0.41),
-      rgba(45, 37, 32, 0.48),
-      rgba(177, 164, 155, 0.12)
-    );
+    // background: linear-gradient(
+    //   180deg,
+    //   rgba(3, 3, 3, 0.41),
+    //   rgba(45, 37, 32, 0.48),
+    //   rgba(177, 164, 155, 0.12)
+    // );
   }
   .card-action {
     padding: 0.3125rem 0.625rem 0.625rem 0.625rem;

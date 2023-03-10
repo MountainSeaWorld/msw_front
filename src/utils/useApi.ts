@@ -508,10 +508,7 @@ export default function useApi() {
 
       return await axios
         .get(
-          metaDataBaseURI.replace(
-            "{id}",
-            Number(CardTokenID).toString(16).padStart(64, "0")
-          )
+          metaDataBaseURI+Number(CardTokenID).toString()
         )
         .then((res) => {
           console.log(metaDataBaseURI)

@@ -8,10 +8,7 @@ import Icon from "@img/home/title-icon.png";
 import navLine from "@img/nav-line.png";
 import navDrop from "@img/nav-drop.png";
 
-/**
- * 操作项
- * - goPage：跳转页面
- */
+
 export default function Menu({ goPage }: { goPage: (path: string) => void }) {
   const { pathname } = useLocation();
   const { t } = useTranslation();

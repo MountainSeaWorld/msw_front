@@ -41,12 +41,15 @@ export default function Stake() {
 
   const [selectStakeNft,setselectStakeNft] = useState<String[]>([]);
   const [selectStakeNftLength,setselectStakeNftLength] = useState(0);
+  const [stakeStatus,setStakeStatus] = useState(true);
+  const [accountWhiteStatus,setAccountWhiteStatus] = useState(false);
+
 
   useEffect(() => {
     RootDom.current = document.getElementById("root");
   }, []);
 
-  // 获取当前质押盈利的代币数量
+  // claim amount
    async function getUserEarnAmount(){
      if (!active || !web3Object || !account) {
        dispatch(setLoginVisible(true));
@@ -64,15 +67,33 @@ export default function Stake() {
        setUserEarnRate(data['0'] || 0)
      })
 
+
    }
+
 
   function getInitData(){
     if (account && web3Object) {
       getMyNftList(account);
-      getMyStakeNftList(account)
-      getUserEarnAmount()
+      getMyStakeNftList(account);
+      getUserEarnAmount();
+      getStakeStatus()
     }
   }
+
+  function getStakeStatus(){
+    if (account && web3Object) {
+      const status_stake = web3Object.ContractMine.methods
+        .getWhiteStatus().call().then((res:any)=>{
+          setStakeStatus(res)
+        });
+      const white_status = web3Object.ContractMine.methods
+        .isWhitelistedCollection(account).call().then((res:any)=>{
+          setAccountWhiteStatus(res)
+        });
+    }
+
+  }
+
   function getUpdateData(){
     if (account && web3Object) {
       console.log(stakeList)
@@ -124,25 +145,32 @@ const changePage = useCallback(
     setselectStakeNftLength(oldselectStakeNft.length)
   });
 
-  // 质押
+  // stake
   async function stakeSend(){
     if (!active || !web3Object || !account) {
       dispatch(setLoginVisible(true));
       return;
     }
     dispatch(addSpining());
+    if (stakeStatus && !accountWhiteStatus){
+      dispatch(delSpining());
+      message.error('you not in the white collections');
+
+      return;
+    }
+
     let nftids = selectStakeNft.filter(x=>x!= '')
     if(nftids.length == 0){
       message.error('please select nft');
       dispatch(delSpining());
       return;
     }
-    //检查是否授权
+    //check approve
     const isApprove = await web3Object.ContractCards.methods
       .isApprovedForAll(account, config.MineAddress)
       .call();
     if (!isApprove) {
-      //如果没授权，则授权
+      //not approve
       await web3Object.ContractCards.methods
         .setApprovalForAll(config.MineAddress, true)
         .send({
@@ -173,7 +201,7 @@ const changePage = useCallback(
       });
   }
 
-  // 赎回 UNSTAKE
+  //  UNSTAKE
   async function withdraw(){
 
     if (!active || !web3Object || !account) {
@@ -204,7 +232,7 @@ const changePage = useCallback(
         dispatch(delSpining());
       });
   }
- // 领取收益的代币：
+ // withdraw：
  async function getClaim(){
    if (!active || !web3Object || !account) {
      dispatch(setLoginVisible(true));
@@ -251,7 +279,7 @@ const changePage = useCallback(
           <div className="label">Earned</div>
           <div className="value">{userEarn} MSW</div>
           <div className="btn"><div className="sc-bcXHqe jqPWEm animation-button" onClick={getClaim} >Get</div></div>
-          <div className="record">Record</div>
+
         </div>
         <div className="tips">
           <div className="tip">
@@ -268,11 +296,11 @@ const changePage = useCallback(
       </div>
       <div className="actions">
         <div className="tabs">
-          <div className={tabCheck ? "tabs-item on" :"tabs-item off"} onClick={selectTabs} >STAKE</div>
+          <div className={tabCheck ? "tabs-item on" :"tabs-item off"} onClick={selectTabs} >MY NFT</div>
           <div className={tabCheck ? "tabs-item off" :"tabs-item on"} onClick={selectTabs2}>STAKED</div>
         </div>
         <div className="confirm">
-          <span>Selected:{selectStakeNft.length}/5</span>
+          <span>Selected:{selectStakeNft.length}</span>
           <div className="stake-btn">
             <Button type="buy" size="small"
                         callbackData={''}

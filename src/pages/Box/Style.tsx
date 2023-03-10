@@ -1,6 +1,7 @@
 import { Layout } from "antd";
 import styled from "styled-components";
 import BoxBG from "@img/box-bg.png";
+import  pageinputBG from "@img/page-input-bg.png"
 
 export default styled(Layout)`
   justify-content: center;
@@ -70,4 +71,30 @@ export const ModalBody = styled.div`
       margin-top: 0.625rem;
     }
   }
+  .selectOpenAmount-title{
+    color:#fff;
+    
+  }
+  .selectOpenAmount{
+    margin:43px 0 10px 0;
+    display:flex;
+    color:#fff;
+    align-items:center;
+    justify-content: center;
+    .pagination-button{
+      margin:0 20px;
+          cursor: pointer;
+    }
+    input{
+      background-image:url(${pageinputBG});
+          background-size: 100% 100%;
+    }
+  }
+
+  .buyButton{
+    width:130px;
+    margin:20px auto 0 auto ;
+
+  }
+  
 `;

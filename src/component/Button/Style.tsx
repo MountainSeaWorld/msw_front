@@ -1,15 +1,16 @@
 import styled, { css } from "styled-components";
 import BtnLDefault from "@img/button-large-default.png";
 import BtnNDanger from "@img/button-normal-danger.png";
-import BtnNDefault from "@img/button-normal-default.png";
-import BtnSDefault from "@img/button-small-default.png";
+import BtnNDefault from "@img/stake-btn.png";
+import BtnSDefault from "@img/stakein-btn.png";
 import BtnSPrimary from "@img/button-small-primary.png";
-import buyBtn from "@img/store-buy-btn.png"
+import buyBtn from "@img/store-buy-btn.png";
+
 export default styled.div<{
   disabled: boolean;
   width: string;
   size: "large" | "normal" | "small";
-  type: "default" | "primary" | "danger" | "buy";
+  type: "default" | "primary" | "danger" | "buy" | "page-prev" | "page-next";
 }>`
   ${(props) => {
     if (props.size === "large" && props.type === "default") {
@@ -35,7 +36,7 @@ export default styled.div<{
       return css`
         background-image: url(${buyBtn});
       `;
-    }else{
+    } else{
       return css`
         background-image: url(${BtnNDefault});
       `;
